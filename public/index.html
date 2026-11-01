@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mumbai Metro &amp; Rail Path Finder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <aside class="panel">
+            <header>
+                <h1>Mumbai Metro &amp; Rail</h1>
+                <p>Shortest routes by Dijkstra's algorithm, computed in C++</p>
+            </header>
+
+            <section class="card">
+                <label for="start">From</label>
+                <input id="start" list="stationList" placeholder="Type a station" autocomplete="off">
+
+                <button id="swap" class="ghost" type="button" aria-label="Swap start and destination">⇅ Swap</button>
+
+                <label for="dest">To</label>
+                <input id="dest" list="stationList" placeholder="Type a station" autocomplete="off">
+                <datalist id="stationList"></datalist>
+
+                <div class="row">
+                    <button id="find" type="button">Find route</button>
+                    <button id="clear" class="ghost" type="button">Clear</button>
+                </div>
+                <p class="hint">Tip: click two stations on the map to set From and To.</p>
+            </section>
+
+            <section class="card" id="resultCard" hidden>
+                <div id="result"></div>
+            </section>
+
+            <section class="card" id="traceCard" hidden>
+                <h2>Watch the search</h2>
+                <p class="hint">Stations are coloured by the time Dijkstra needed to reach them.</p>
+                <div class="row">
+                    <button id="play" class="ghost" type="button">▶ Play</button>
+                    <input id="scrub" type="range" min="0" max="0" value="0" aria-label="Search step">
+                </div>
+                <div id="traceInfo" class="hint"></div>
+            </section>
+
+            <section class="card">
+                <h2>Map</h2>
+                <label class="toggle"><input type="checkbox" id="tilesToggle"> Show street map (OpenStreetMap, needs internet)</label>
+                <p class="hint">Stations use approximate coordinates, so they may sit a few hundred metres off the streets.</p>
+            </section>
+
+            <section class="card">
+                <h2>Lines running</h2>
+                <p class="hint">Untick a line to simulate a closure and see Dijkstra reroute.</p>
+                <div id="lineToggles"></div>
+            </section>
+
+            <footer>
+                Station order and interchanges from Wikipedia (Oct 2026). Coordinates are approximate and ride
+                times are estimates, not timetables.
+            </footer>
+        </aside>
+
+        <main class="mapwrap">
+            <svg id="map" role="img" aria-label="Map of Mumbai metro and suburban rail"></svg>
+            <div class="zoom">
+                <button id="zoomIn" type="button" aria-label="Zoom in">+</button>
+                <button id="zoomOut" type="button" aria-label="Zoom out">−</button>
+                <button id="fit" type="button" aria-label="Fit map">⤢</button>
+            </div>
+            <div id="attrib" class="attrib" hidden>© OpenStreetMap contributors</div>
+            <div id="tooltip" class="tooltip" hidden></div>
+            <div id="status" class="status" hidden></div>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

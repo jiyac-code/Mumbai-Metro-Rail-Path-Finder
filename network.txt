@@ -1,0 +1,253 @@
+# Mumbai Metro + Suburban Rail network (read by main.cpp)
+#
+# DATA PROVENANCE
+#   Station order, lines and interchanges: Wikipedia (Mumbai Metro, Aqua/Yellow/Red Line pages,
+#   Western/Central/Harbour line pages), checked October 2026.
+#   COORDINATES ARE APPROXIMATE (typed from general knowledge, roughly +/- 300-800 m).
+#   They are used for drawing the map and for ESTIMATING ride times from distance.
+#   Replace them with surveyed values (e.g. from OpenStreetMap) for exact results.
+#   Travel times are ESTIMATES, not timetables.
+#
+# FORMAT (pipe separated)
+#   PARAM|name|value
+#   LINE|id|type(metro|rail)|name|colour
+#   STATION|id|name|type|lat|lon
+#   ROUTE|lineId|stationId stationId ...        (ordered chain; a line may have several routes = branches)
+#   LINK|stationIdA|stationIdB|minutes|note     (walking interchange between differently placed stations)
+
+PARAM|metro_kmh|45
+PARAM|metro_dwell_s|30
+PARAM|rail_kmh|50
+PARAM|rail_dwell_s|42
+PARAM|transfer_rail_s|300
+PARAM|transfer_metro_s|360
+
+# ---------------- LINES ----------------
+LINE|WR|rail|Western Line|#7c3aed
+LINE|CR|rail|Central Line|#15803d
+LINE|HB|rail|Harbour Line|#b45309
+LINE|TH|rail|Trans-Harbour Line|#64748b
+LINE|L1|metro|Metro Line 1 (Blue)|#2563eb
+LINE|L2A|metro|Metro Line 2A (Yellow)|#eab308
+LINE|L2B|metro|Metro Line 2B (Yellow)|#ca8a04
+LINE|L3|metro|Metro Line 3 (Aqua)|#06b6d4
+LINE|L7|metro|Metro Line 7 (Red)|#dc2626
+LINE|L9|metro|Metro Line 9 (Red)|#9f1239
+
+# ---------------- RAIL STATIONS ----------------
+# Western (Churchgate - Virar)
+STATION|churchgate|Churchgate|rail|18.9322|72.8264
+STATION|marine-lines|Marine Lines|rail|18.9440|72.8232
+STATION|charni-road|Charni Road|rail|18.9520|72.8190
+STATION|grant-road|Grant Road|rail|18.9629|72.8153
+STATION|mumbai-central|Mumbai Central|rail|18.9693|72.8197
+STATION|mahalaxmi|Mahalaxmi|rail|18.9824|72.8236
+STATION|lower-parel|Lower Parel|rail|18.9953|72.8301
+STATION|prabhadevi|Prabhadevi|rail|19.0075|72.8318
+STATION|dadar|Dadar|rail|19.0182|72.8436
+STATION|matunga-road|Matunga Road|rail|19.0280|72.8447
+STATION|mahim|Mahim Junction|rail|19.0415|72.8442
+STATION|bandra|Bandra|rail|19.0544|72.8402
+STATION|khar-road|Khar Road|rail|19.0672|72.8398
+STATION|santacruz|Santacruz|rail|19.0816|72.8416
+STATION|vile-parle|Vile Parle|rail|19.0996|72.8441
+STATION|andheri|Andheri|rail|19.1197|72.8464
+STATION|jogeshwari|Jogeshwari|rail|19.1361|72.8492
+STATION|ram-mandir|Ram Mandir|rail|19.1503|72.8497
+STATION|goregaon|Goregaon|rail|19.1646|72.8493
+STATION|malad|Malad|rail|19.1862|72.8484
+STATION|kandivali|Kandivali|rail|19.2047|72.8529
+STATION|borivali|Borivali|rail|19.2307|72.8567
+STATION|dahisar|Dahisar|rail|19.2503|72.8588
+STATION|mira-road|Mira Road|rail|19.2815|72.8556
+STATION|bhayandar|Bhayandar|rail|19.3107|72.8517
+STATION|naigaon|Naigaon|rail|19.3516|72.8467
+STATION|vasai-road|Vasai Road|rail|19.3817|72.8318
+STATION|nallasopara|Nallasopara|rail|19.4170|72.8199
+STATION|virar|Virar|rail|19.4559|72.8118
+
+# Central (CSMT - Kalyan)
+STATION|csmt|CSMT|rail|18.9400|72.8353
+STATION|masjid|Masjid|rail|18.9470|72.8363
+STATION|sandhurst-road|Sandhurst Road|rail|18.9608|72.8385
+STATION|byculla|Byculla|rail|18.9762|72.8328
+STATION|chinchpokli|Chinchpokli|rail|18.9874|72.8329
+STATION|currey-road|Currey Road|rail|18.9948|72.8356
+STATION|parel|Parel|rail|19.0010|72.8410
+STATION|matunga|Matunga|rail|19.0273|72.8558
+STATION|sion|Sion|rail|19.0399|72.8618
+STATION|kurla|Kurla|rail|19.0653|72.8792
+STATION|vidyavihar|Vidyavihar|rail|19.0792|72.8975
+STATION|ghatkopar|Ghatkopar|rail|19.0863|72.9085
+STATION|vikhroli|Vikhroli|rail|19.1101|72.9266
+STATION|kanjur-marg|Kanjur Marg|rail|19.1299|72.9289
+STATION|bhandup|Bhandup|rail|19.1431|72.9377
+STATION|nahur|Nahur|rail|19.1545|72.9461
+STATION|mulund|Mulund|rail|19.1723|72.9561
+STATION|thane|Thane|rail|19.1861|72.9752
+STATION|kalwa|Kalwa|rail|19.1980|73.0045
+STATION|mumbra|Mumbra|rail|19.1881|73.0245
+STATION|diva|Diva Junction|rail|19.1879|73.0440
+STATION|kopar|Kopar|rail|19.2118|73.0617
+STATION|dombivli|Dombivli|rail|19.2184|73.0868
+STATION|thakurli|Thakurli|rail|19.2240|73.0985
+STATION|kalyan|Kalyan Junction|rail|19.2350|73.1305
+
+# Harbour (CSMT - Wadala Road - Panvel, plus Wadala Road - Goregaon branch)
+STATION|dockyard-road|Dockyard Road|rail|18.9678|72.8438
+STATION|reay-road|Reay Road|rail|18.9741|72.8467
+STATION|cotton-green|Cotton Green|rail|18.9865|72.8547
+STATION|sewri|Sewri|rail|18.9999|72.8579
+STATION|wadala-road|Wadala Road|rail|19.0164|72.8585
+STATION|kings-circle|King's Circle|rail|19.0298|72.8582
+STATION|gtb-nagar|Guru Tegh Bahadur Nagar|rail|19.0372|72.8668
+STATION|chunabhatti|Chunabhatti|rail|19.0501|72.8717
+STATION|tilak-nagar|Tilak Nagar|rail|19.0667|72.8885
+STATION|chembur|Chembur|rail|19.0626|72.8990
+STATION|govandi|Govandi|rail|19.0553|72.9138
+STATION|mankhurd|Mankhurd|rail|19.0496|72.9327
+STATION|vashi|Vashi|rail|19.0634|72.9987
+STATION|sanpada|Sanpada|rail|19.0603|73.0110
+STATION|juinagar|Juinagar|rail|19.0548|73.0192
+STATION|nerul|Nerul|rail|19.0341|73.0190
+STATION|seawoods|Seawoods-Darave|rail|19.0153|73.0183
+STATION|cbd-belapur|CBD Belapur|rail|19.0238|73.0393
+STATION|kharghar|Kharghar|rail|19.0266|73.0648
+STATION|mansarovar|Mansarovar|rail|19.0145|73.0813
+STATION|khandeshwar|Khandeshwar|rail|19.0007|73.0996
+STATION|panvel|Panvel|rail|18.9894|73.1175
+
+# Trans-Harbour extras (Thane - Turbhe)
+STATION|digha-gaon|Digha Gaon|rail|19.1700|72.9980
+STATION|airoli|Airoli|rail|19.1568|72.9987
+STATION|rabale|Rabale|rail|19.1386|73.0014
+STATION|ghansoli|Ghansoli|rail|19.1230|73.0054
+STATION|kopar-khairane|Kopar Khairane|rail|19.1057|73.0111
+STATION|turbhe|Turbhe|rail|19.0773|73.0129
+
+# ---------------- METRO STATIONS ----------------
+# Line 1 (Versova - Ghatkopar)
+STATION|m-versova|Versova|metro|19.1312|72.8206
+STATION|m-dn-nagar|D.N. Nagar|metro|19.1257|72.8320
+STATION|m-azad-nagar|Azad Nagar|metro|19.1246|72.8388
+STATION|m-andheri|Andheri|metro|19.1195|72.8510
+STATION|m-weh|Western Express Highway|metro|19.1153|72.8557
+STATION|m-chakala|Chakala (J.B. Nagar)|metro|19.1100|72.8662
+STATION|m-airport-road|Airport Road|metro|19.1095|72.8762
+STATION|m-marol-naka|Marol Naka|metro|19.1086|72.8838
+STATION|m-saki-naka|Saki Naka|metro|19.1051|72.8915
+STATION|m-asalpha|Asalpha|metro|19.0966|72.9000
+STATION|m-jagruti-nagar|Jagruti Nagar|metro|19.0924|72.9051
+STATION|m-ghatkopar|Ghatkopar|metro|19.0865|72.9090
+
+# Line 2A (Dahisar East - Andheri West)
+STATION|m-dahisar-east|Dahisar East|metro|19.2563|72.8657
+STATION|m-anand-nagar|Anand Nagar|metro|19.2486|72.8584
+STATION|m-kandarpada|Kandarpada|metro|19.2425|72.8548
+STATION|m-mandapeshwar|Mandapeshwar|metro|19.2371|72.8509
+STATION|m-eksar|Eksar|metro|19.2330|72.8499
+STATION|m-borivali-west|Borivali West|metro|19.2290|72.8490
+STATION|m-shimpoli|Shimpoli|metro|19.2165|72.8476
+STATION|m-kandivali-west|Kandivali West|metro|19.2056|72.8438
+STATION|m-dahanukarwadi|Dahanukarwadi|metro|19.1991|72.8412
+STATION|m-valnai|Valnai-Meeth Chowky|metro|19.1923|72.8399
+STATION|m-malad-west|Malad West|metro|19.1870|72.8380
+STATION|m-lower-malad|Lower Malad|metro|19.1790|72.8380
+STATION|m-bangur-nagar|Bangur Nagar|metro|19.1714|72.8378
+STATION|m-goregaon-west|Goregaon West|metro|19.1645|72.8350
+STATION|m-oshiwara|Oshiwara|metro|19.1550|72.8353
+STATION|m-lower-oshiwara|Lower Oshiwara|metro|19.1486|72.8350
+STATION|m-andheri-west|Andheri West|metro|19.1340|72.8322
+
+# Line 7 (Dahisar East - Gundavali)
+STATION|m-ovaripada|Ovaripada|metro|19.2480|72.8655
+STATION|m-rashtriya-udyan|Rashtriya Udyan|metro|19.2400|72.8680
+STATION|m-devipada|Devipada|metro|19.2316|72.8685
+STATION|m-magathane|Magathane|metro|19.2231|72.8680
+STATION|m-poisar|Poisar|metro|19.2162|72.8672
+STATION|m-akurli|Akurli|metro|19.2051|72.8662
+STATION|m-kurar|Kurar|metro|19.1953|72.8658
+STATION|m-dindoshi|Dindoshi|metro|19.1824|72.8650
+STATION|m-aarey|Aarey|metro|19.1709|72.8672
+STATION|m-goregaon-east|Goregaon East|metro|19.1635|72.8655
+STATION|m-jogeshwari-east|Jogeshwari East|metro|19.1448|72.8636
+STATION|m-mogra|Mogra|metro|19.1306|72.8618
+STATION|m-gundavali|Gundavali|metro|19.1170|72.8572
+
+# Line 9 (Dahisar East - Kashigaon)
+STATION|m-pandurang-wadi|Pandurang Wadi|metro|19.2690|72.8710
+STATION|m-miragaon|Miragaon|metro|19.2825|72.8740
+STATION|m-kashigaon|Kashigaon|metro|19.2965|72.8800
+
+# Line 2B (Mandale - Chembur)
+STATION|m-mandale|Mandale|metro|19.0555|72.9456
+STATION|m-mankhurd|Mankhurd|metro|19.0497|72.9323
+STATION|m-deonar|Deonar|metro|19.0494|72.9209
+STATION|m-csm-chowk|CSM Chowk (Chembur)|metro|19.0508|72.9073
+STATION|m-diamond-garden|Diamond Garden|metro|19.0541|72.9034
+STATION|m-chembur|Chembur|metro|19.0600|72.8980
+
+# Line 3 (Aarey JVLR - Cuffe Parade)
+STATION|m-aarey-jvlr|Aarey JVLR|metro|19.1458|72.8718
+STATION|m-seepz|SEEPZ|metro|19.1257|72.8760
+STATION|m-midc-andheri|MIDC Andheri|metro|19.1180|72.8688
+STATION|m-airport-t2|Airport T2|metro|19.1000|72.8745
+STATION|m-sahar-road|Sahar Road|metro|19.0950|72.8650
+STATION|m-airport-t1|Airport T1|metro|19.0930|72.8560
+STATION|m-santacruz|Santacruz|metro|19.0811|72.8456
+STATION|m-bandra-colony|Bandra Colony|metro|19.0664|72.8517
+STATION|m-bkc|Bandra Kurla Complex|metro|19.0656|72.8658
+STATION|m-dharavi|Dharavi|metro|19.0443|72.8570
+STATION|m-shitaladevi|Shitaladevi Mandir|metro|19.0383|72.8421
+STATION|m-dadar|Dadar|metro|19.0233|72.8420
+STATION|m-siddhivinayak|Siddhivinayak|metro|19.0170|72.8305
+STATION|m-worli|Worli|metro|19.0103|72.8187
+STATION|m-acharya-atre-chowk|Acharya Atre Chowk|metro|18.9990|72.8167
+STATION|m-science-centre|Science Centre|metro|18.9894|72.8149
+STATION|m-mahalaxmi|Mahalaxmi|metro|18.9827|72.8238
+STATION|m-mumbai-central|Mumbai Central|metro|18.9709|72.8196
+STATION|m-grant-road|Grant Road|metro|18.9637|72.8150
+STATION|m-girgaon|Girgaon|metro|18.9535|72.8136
+STATION|m-kalbadevi|Kalbadevi|metro|18.9503|72.8279
+STATION|m-csmt|CSMT|metro|18.9398|72.8359
+STATION|m-hutatma-chowk|Hutatma Chowk|metro|18.9335|72.8318
+STATION|m-churchgate|Churchgate|metro|18.9322|72.8276
+STATION|m-vidhan-bhavan|Vidhan Bhavan|metro|18.9252|72.8231
+STATION|m-cuffe-parade|Cuffe Parade|metro|18.9133|72.8172
+
+# ---------------- ROUTES ----------------
+ROUTE|WR|churchgate marine-lines charni-road grant-road mumbai-central mahalaxmi lower-parel prabhadevi dadar matunga-road mahim bandra khar-road santacruz vile-parle andheri jogeshwari ram-mandir goregaon malad kandivali borivali dahisar mira-road bhayandar naigaon vasai-road nallasopara virar
+ROUTE|CR|csmt masjid sandhurst-road byculla chinchpokli currey-road parel dadar matunga sion kurla vidyavihar ghatkopar vikhroli kanjur-marg bhandup nahur mulund thane kalwa mumbra diva kopar dombivli thakurli kalyan
+# Harbour main: CSMT - Wadala Road - Kurla - Mankhurd - Vashi - Panvel
+ROUTE|HB|csmt masjid sandhurst-road dockyard-road reay-road cotton-green sewri wadala-road gtb-nagar chunabhatti kurla tilak-nagar chembur govandi mankhurd vashi sanpada juinagar nerul seawoods cbd-belapur kharghar mansarovar khandeshwar panvel
+# Harbour western branch: Wadala Road - King's Circle - Mahim - ... - Goregaon
+ROUTE|HB|wadala-road kings-circle mahim bandra khar-road santacruz vile-parle andheri jogeshwari ram-mandir goregaon
+# Trans-Harbour: Thane - Turbhe - Juinagar - Panvel, and Turbhe - Sanpada - Vashi
+ROUTE|TH|thane digha-gaon airoli rabale ghansoli kopar-khairane turbhe juinagar nerul seawoods cbd-belapur kharghar mansarovar khandeshwar panvel
+ROUTE|TH|turbhe sanpada vashi
+
+ROUTE|L1|m-versova m-dn-nagar m-azad-nagar m-andheri m-weh m-chakala m-airport-road m-marol-naka m-saki-naka m-asalpha m-jagruti-nagar m-ghatkopar
+ROUTE|L2A|m-dahisar-east m-anand-nagar m-kandarpada m-mandapeshwar m-eksar m-borivali-west m-shimpoli m-kandivali-west m-dahanukarwadi m-valnai m-malad-west m-lower-malad m-bangur-nagar m-goregaon-west m-oshiwara m-lower-oshiwara m-andheri-west
+ROUTE|L7|m-dahisar-east m-ovaripada m-rashtriya-udyan m-devipada m-magathane m-poisar m-akurli m-kurar m-dindoshi m-aarey m-goregaon-east m-jogeshwari-east m-mogra m-gundavali
+ROUTE|L9|m-dahisar-east m-pandurang-wadi m-miragaon m-kashigaon
+ROUTE|L2B|m-mandale m-mankhurd m-deonar m-csm-chowk m-diamond-garden m-chembur
+ROUTE|L3|m-aarey-jvlr m-seepz m-midc-andheri m-marol-naka m-airport-t2 m-sahar-road m-airport-t1 m-santacruz m-bandra-colony m-bkc m-dharavi m-shitaladevi m-dadar m-siddhivinayak m-worli m-acharya-atre-chowk m-science-centre m-mahalaxmi m-mumbai-central m-grant-road m-girgaon m-kalbadevi m-csmt m-hutatma-chowk m-churchgate m-vidhan-bhavan m-cuffe-parade
+
+# ---------------- WALKING INTERCHANGES (different station ids) ----------------
+# Same-name stations on several lines (e.g. Kurla, Dadar rail, Marol Naka, Dahisar East) are one
+# station id, so they connect automatically with the transfer penalty. Minutes include some waiting.
+LINK|m-andheri|andheri|7|Metro Line 1 to Andheri rail
+LINK|m-ghatkopar|ghatkopar|6|Metro Line 1 to Ghatkopar rail
+LINK|m-dn-nagar|m-andheri-west|7|Line 1 D.N. Nagar to Line 2A Andheri West
+LINK|m-weh|m-gundavali|6|Line 1 WEH to Line 7 Gundavali
+LINK|m-dahisar-east|dahisar|10|Dahisar East metro to Dahisar rail
+LINK|m-churchgate|churchgate|5|Line 3 to Western
+LINK|m-grant-road|grant-road|6|Line 3 to Western
+LINK|m-mumbai-central|mumbai-central|6|Line 3 to Western
+LINK|m-mahalaxmi|mahalaxmi|5|Line 3 to Western
+LINK|m-santacruz|santacruz|8|Line 3 to Western via skywalk
+LINK|m-csmt|csmt|6|Line 3 to Central/Harbour
+LINK|m-dadar|dadar|8|Line 3 to Dadar rail
+LINK|m-mankhurd|mankhurd|6|Line 2B to Harbour
+LINK|parel|prabhadevi|8|Footbridge between Central Parel and Western Prabhadevi
+LINK|matunga|matunga-road|8|Footbridge between Central Matunga and Western Matunga Road
